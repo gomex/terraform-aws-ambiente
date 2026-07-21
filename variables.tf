@@ -23,7 +23,6 @@ variable "env" {
 
 variable "instancias" {
   type = map(object({
-    name          = string
     instance_type = string
   }))
 }
