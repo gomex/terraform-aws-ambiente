@@ -7,5 +7,16 @@ variable "instance_type" {
 
 variable "name" {
   type        = string
+  description = "Nome do projeto"
+}
+
+variable "criar_bd" {
+  type        = bool
+  description = "Feature flag para criar banco de dados"
+  default     = false
+}
+
+variable "env" {
+  type        = string
   description = "Nome do ambiente"
 }
