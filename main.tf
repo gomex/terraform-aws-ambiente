@@ -19,7 +19,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-123456789"
+  ami           = data.aws_ami.ubuntu.image_id
   instance_type = var.instance_type
 
   tags = {
