@@ -5,10 +5,10 @@ variable "instance_type" {
   sensitive   = false
 }
 
-variable "name" {
-  type        = string
-  description = "Nome do projeto"
-}
+# variable "name" {
+#   type        = string
+#   description = "Nome do projeto"
+# }
 
 variable "criar_bd" {
   type        = bool
