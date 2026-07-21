@@ -16,6 +16,9 @@ variable "env" {
 }
 
 variable "instancias" {
-  type        = map(string)
+  type = map(object({
+    instance_type = string
+    plataforma    = string
+  }))
   description = "Mapa das instancias a serem criadas"
 }
