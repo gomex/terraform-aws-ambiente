@@ -1,7 +1,3 @@
-locals {
-  name = lower(var.name)
-}
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -18,18 +14,12 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "this" {
+  for_each      = var.instancias
   ami           = data.aws_ami.ubuntu.image_id
   instance_type = var.instance_type
 
   tags = {
-    Name = local.name
+    Name = each.key
   }
-
-}
-
-resource "aws_instance" "bd" {
-  count         = var.criar_bd && var.env == "prod" ? 1 : 0
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
 }

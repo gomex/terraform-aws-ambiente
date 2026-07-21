@@ -5,18 +5,17 @@ variable "instance_type" {
   sensitive   = false
 }
 
-variable "name" {
-  type        = string
-  description = "Nome do projeto"
-}
-
-variable "criar_bd" {
-  type        = bool
-  description = "Feature flag para criar banco de dados"
-  default     = false
-}
+# variable "name" {
+#   type        = string
+#   description = "Nome do projeto"
+# }
 
 variable "env" {
   type        = string
   description = "Nome do ambiente"
+}
+
+variable "instancias" {
+  type        = set(string)
+  description = "Lista das instancias a serem criadas"
 }
