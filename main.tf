@@ -18,7 +18,8 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "this" {
+  for_each      = var.instancias
   ami           = data.aws_ami.ubuntu.image_id
   instance_type = var.instance_type
 
@@ -26,10 +27,4 @@ resource "aws_instance" "web" {
     Name = local.name
   }
 
-}
-
-resource "aws_instance" "bd" {
-  count         = var.criar_bd && var.env == "prod" ? 1 : 0
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
 }

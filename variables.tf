@@ -20,3 +20,10 @@ variable "env" {
   type        = string
   description = "Nome do ambiente"
 }
+
+variable "instancias" {
+  type = map(object({
+    name          = string
+    instance_type = string
+  }))
+}
