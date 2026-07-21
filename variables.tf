@@ -16,6 +16,6 @@ variable "env" {
 }
 
 variable "instancias" {
-  type        = set(string)
-  description = "Lista das instancias a serem criadas"
+  type        = map(string)
+  description = "Mapa das instancias a serem criadas"
 }
