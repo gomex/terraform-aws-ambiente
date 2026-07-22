@@ -29,8 +29,9 @@ resource "aws_instance" "web" {
   dynamic "ebs_block_device" {
     for_each = var.volumes-extras
     content {
-      device_name = ebs_block_device.value["device_name"]
-      volume_size = ebs_block_device.value["volume_size"]
+      device_name           = ebs_block_device.value["device_name"]
+      volume_size           = ebs_block_device.value["volume_size"]
+      delete_on_termination = ebs_block_device.value["delete_on_termination"]
     }
   }
 

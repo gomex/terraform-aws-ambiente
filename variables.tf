@@ -23,7 +23,8 @@ variable "env" {
 
 variable "volumes-extras" {
   type = map(object({
-    device_name = string
-    volume_size = string
+    device_name           = string
+    volume_size           = string
+    delete_on_termination = bool
   }))
 }
