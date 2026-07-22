@@ -20,3 +20,11 @@ variable "env" {
   type        = string
   description = "Nome do ambiente"
 }
+
+variable "extra_volumes" {
+  type = map(object({
+    device_name           = string
+    volume_size           = string
+    delete_on_termination = bool
+  }))
+}
