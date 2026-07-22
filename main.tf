@@ -26,6 +26,12 @@ resource "aws_instance" "web" {
     Name = local.name
   }
 
+  ebs_block_device {
+    device_name           = "/dev/sdd"
+    volume_size           = "50"
+    delete_on_termination = true
+  }
+
   dynamic "ebs_block_device" {
     for_each = var.volumes-extras
     content {
