@@ -26,10 +26,12 @@ resource "aws_instance" "web" {
     Name = local.name
   }
 
-}
+  dynamic "ebs_block_device" {
+    for_each = var.volumes-extras
+    content {
+      device_name = ebs_block_device.value["device_name"]
+      volume_size = ebs_block_device.value["volume_size"]
+    }
+  }
 
-resource "aws_instance" "bd" {
-  count         = var.criar_bd && var.env == "prod" ? 1 : 0
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
 }
