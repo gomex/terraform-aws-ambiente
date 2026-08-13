@@ -22,6 +22,14 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.image_id
   instance_type = var.instance_type
 
+  metadata_options {
+    http_tokens = "required"
+  }
+
+  root_block_device {
+    encrypted = true
+  }
+
   tags = {
     Name = local.name
   }
