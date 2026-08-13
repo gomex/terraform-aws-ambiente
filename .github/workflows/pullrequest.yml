@@ -1,0 +1,22 @@
+name: Pull request
+run-name: ${{ github.actor }} abriu um PR 🚀
+on:
+  pull_request:
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read          # Required to checkout and read repo files
+      security-events: write  # Required to upload SARIF files to Security tab
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: 'config'
+          hide-progress: true
+          format: table
+          severity: 'CRITICAL,HIGH'
