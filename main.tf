@@ -22,6 +22,10 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.image_id
   instance_type = var.instance_type
 
+  root_block_device {
+    encrypted = true
+  }
+
   metadata_options {
     http_tokens = "required"
   }
