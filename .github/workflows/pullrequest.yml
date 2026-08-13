@@ -3,12 +3,19 @@ run-name: ${{ github.actor }} abriu um PR 🚀
 on:
   pull_request:
 jobs:
-  Explore-GitHub-Actions:
+  checkiac:
+    name: checkiac
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: Check out repository code
-        uses: actions/checkout@v6
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: 'config'
+          hide-progress: true
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
