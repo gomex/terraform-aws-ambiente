@@ -1,0 +1,14 @@
+name: Pull Request
+run-name: ${{ github.actor }} abriu um PR 🚀
+on:
+  pull_request:
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
